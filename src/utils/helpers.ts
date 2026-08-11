@@ -1,4 +1,4 @@
-import { Story, Priority, WorkflowStatus } from '../types';
+import type { Story, Priority, WorkflowStatus } from '../types';
 
 /**
  * Formats an ISO date string into a clean, human-readable date.
@@ -12,7 +12,7 @@ export function formatDate(iso: string): string {
       day: 'numeric',
       year: 'numeric',
     }).format(date);
-  } catch (e) {
+  } catch {
     return iso;
   }
 }
@@ -50,7 +50,7 @@ export function formatRelativeTime(iso: string): string {
       return `${diffDays}d ago`;
     }
     return formatDate(iso);
-  } catch (e) {
+  } catch {
     return iso;
   }
 }

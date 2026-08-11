@@ -1,4 +1,4 @@
-import { AppState } from '../types';
+import type { AppState } from '../types';
 
 const STORAGE_KEY = 'agile-pm-state';
 const CURRENT_USER_KEY = 'agile-pm-current-user';
