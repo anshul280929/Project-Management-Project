@@ -10,7 +10,6 @@ import DashboardRoundedIcon from '@mui/icons-material/DashboardRounded';
 import ViewKanbanRoundedIcon from '@mui/icons-material/ViewKanbanRounded';
 import ListAltRoundedIcon from '@mui/icons-material/ListAltRounded';
 import GroupRoundedIcon from '@mui/icons-material/GroupRounded';
-import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 import FolderRoundedIcon from '@mui/icons-material/FolderRounded';
 import WorkspacesRoundedIcon from '@mui/icons-material/WorkspacesRounded';
 import { useAppContext } from '../../context/AppContext';
@@ -67,8 +66,27 @@ export default function Sidebar() {
         overflow: 'hidden',
       }}
     >
-      {/* ── Brand ── */}
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, px: 3, mb: 3 }}>
+      {/* ── Brand (Click to navigate home/create project) ── */}
+      <Box
+        onClick={() => navigate('/')}
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: 1.5,
+          px: 2,
+          py: 1,
+          mx: 1,
+          mb: 2.5,
+          cursor: 'pointer',
+          userSelect: 'none',
+          borderRadius: '8px',
+          transition: 'all 0.2s ease-in-out',
+          '&:hover': {
+            bgcolor: 'rgba(255, 255, 255, 0.08)',
+          },
+        }}
+        title="Go to Projects Landing Page"
+      >
         <Box
           sx={{
             width: 32,
@@ -90,7 +108,7 @@ export default function Sidebar() {
         </Typography>
       </Box>
 
-      {/* ── Workspace Section (All Projects) ── */}
+      {/* ── Workspace Section ── */}
       <Box sx={{ px: 2, mb: 1, display: 'flex', alignItems: 'center', gap: 1 }}>
         <WorkspacesRoundedIcon sx={{ fontSize: 16, color: '#ef2cc1' }} />
         <Typography
@@ -225,20 +243,6 @@ export default function Sidebar() {
             </ListItemButton>
           );
         })}
-      </List>
-
-      {/* ── Divider + Back to Projects ── */}
-      <Divider sx={{ borderColor: 'rgba(255,255,255,0.08)', mx: 3, mb: 1 }} />
-      <List component="nav" sx={{ px: 0.5 }}>
-        <ListItemButton onClick={() => navigate('/')}>
-          <ListItemIcon sx={{ minWidth: 36, color: 'inherit' }}>
-            <ArrowBackRoundedIcon fontSize="small" />
-          </ListItemIcon>
-          <ListItemText
-            primary="All Projects"
-            slotProps={{ primary: { sx: { fontSize: 14, fontWeight: 500 } } }}
-          />
-        </ListItemButton>
       </List>
     </Box>
   );

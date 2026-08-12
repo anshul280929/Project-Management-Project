@@ -23,7 +23,6 @@ import FilterAltOffRoundedIcon from '@mui/icons-material/FilterAltOffRounded';
 import { useStories, type CreateStoryInput } from '../../hooks/useStories';
 import { useUsers } from '../../hooks/useUsers';
 import { useFilters } from '../../hooks/useFilters';
-import { useActiveProject } from '../../hooks/useActiveProject';
 import { filterStories } from '../../utils/helpers';
 import { StorageService } from '../../services/storageService';
 import { PRIORITIES, WORKFLOW_STATUSES } from '../../utils/constants';
@@ -51,13 +50,11 @@ const tableHeadCellSx = {
 
 const StoryListPage: React.FC = () => {
   const { projectId } = useParams<{ projectId: string }>();
-  const project = useActiveProject();
   const { stories, addStory, changeStatus } = useStories(projectId);
   const { users, projectMembers } = useUsers();
   const { filters, setFilter, clearFilters } = useFilters();
 
   const [modalOpen, setModalOpen] = useState(false);
-  const [editingStory, setEditingStory] = useState<null>(null); // Only create from list page
 
   // Members for filter dropdown
   const members = useMemo(
@@ -308,7 +305,6 @@ const StoryListPage: React.FC = () => {
         open={modalOpen}
         onClose={() => setModalOpen(false)}
         onSubmit={handleCreateStory}
-        story={editingStory}
       />
     </Box>
   );

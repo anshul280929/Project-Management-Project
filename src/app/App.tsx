@@ -9,6 +9,8 @@ import UserListPage from '../features/users/UserListPage';
 import UserDetailPage from '../features/users/UserDetailPage';
 import StoryListPage from '../features/stories/StoryListPage';
 import StoryDetailPage from '../features/stories/StoryDetailPage';
+import DashboardPage from '../features/dashboard/DashboardPage';
+import KanbanPage from '../features/kanban/KanbanPage';
 import '../App.css';
 
 function App() {
@@ -23,9 +25,8 @@ function App() {
 
             {/* ── Project sub-routes (wrapped in AppShell) ── */}
             <Route path="/project/:projectId" element={<AppShell />}>
-              {/* Feature pages will be added here in later phases */}
-              <Route index element={<div>Dashboard</div>} />
-              <Route path="board" element={<div>Board</div>} />
+              <Route index element={<DashboardPage />} />
+              <Route path="board" element={<KanbanPage />} />
               <Route path="stories" element={<StoryListPage />} />
               <Route path="story/:storyId" element={<StoryDetailPage />} />
               <Route path="team" element={<UserListPage />} />
