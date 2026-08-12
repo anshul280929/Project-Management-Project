@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Box from '@mui/material/Box';
@@ -15,23 +16,38 @@ import Breadcrumbs from './Breadcrumbs';
 // ─── Component ─────────────────────────────────────────
 export default function Header() {
   const { state } = useAppContext();
+  const { projectId } = useParams<{ projectId: string }>();
   const [currentUserId, setCurrentUserId] = useState<string>('');
 
-  // Load persisted current user on mount
+  // Find active project if inside project route
+  const currentProject = projectId
+    ? state.projects.find((p) => p.id === projectId)
+    : null;
+
+  // Filter users according to current project's member list
+  const availableUsers = currentProject
+    ? state.users.filter((u) => currentProject.members.includes(u.id))
+    : state.users;
+
+  // Load/sync persisted current user with available project members
   useEffect(() => {
     const stored = StorageService.getCurrentUserId();
-    if (stored && state.users.some((u) => u.id === stored)) {
+    if (stored && availableUsers.some((u) => u.id === stored)) {
       setCurrentUserId(stored);
+    } else {
+      setCurrentUserId('');
     }
-  }, [state.users]);
+  }, [availableUsers, projectId]);
 
   function handleUserChange(event: SelectChangeEvent) {
     const userId = event.target.value;
     setCurrentUserId(userId);
-    StorageService.setCurrentUserId(userId);
+    if (userId) {
+      StorageService.setCurrentUserId(userId);
+    }
   }
 
-  const selectedUser = state.users.find((u) => u.id === currentUserId);
+  const selectedUser = availableUsers.find((u) => u.id === currentUserId);
 
   return (
     <AppBar position="sticky" color="default">
@@ -90,7 +106,7 @@ export default function Header() {
             <MenuItem value="" disabled>
               <em>Select user…</em>
             </MenuItem>
-            {state.users.map((user) => (
+            {availableUsers.map((user) => (
               <MenuItem key={user.id} value={user.id}>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
                   <Avatar
@@ -107,12 +123,12 @@ export default function Header() {
                 </Box>
               </MenuItem>
             ))}
-            {state.users.length === 0 && (
+            {availableUsers.length === 0 && (
               <MenuItem disabled>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                   <PersonRoundedIcon sx={{ fontSize: 18, color: 'text.secondary' }} />
                   <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                    No users yet
+                    No members in project
                   </Typography>
                 </Box>
               </MenuItem>
