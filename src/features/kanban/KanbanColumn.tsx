@@ -74,8 +74,8 @@ export const KanbanColumn: React.FC<KanbanColumnProps> = ({
       onDrop={handleDrop}
       sx={{
         flex: 1,
-        minWidth: { xs: 280, sm: 300 },
-        maxWidth: { md: 360 },
+        minWidth: { xs: 260, md: 0 },
+        width: '100%',
         display: 'flex',
         flexDirection: 'column',
         backgroundColor: 'var(--color-bg-subtle, #f8fafc)',

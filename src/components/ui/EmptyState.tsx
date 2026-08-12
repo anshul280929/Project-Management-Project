@@ -100,7 +100,6 @@ const EmptyState: React.FC<EmptyStateProps> = ({
           color="primary"
           onClick={onAction}
           sx={{
-            borderRadius: 'var(--radius-full)',
             px: 4,
           }}
         >

@@ -108,7 +108,7 @@ export default function AppShell() {
         </Box>
 
         {/* Page content (nested routes render here) */}
-        <Box sx={{ flex: 1, overflow: 'auto' }}>
+        <Box sx={{ flex: 1, overflow: 'auto', p: { xs: 2, sm: 2.5, md: 3 } }}>
           <Outlet />
         </Box>
       </Box>

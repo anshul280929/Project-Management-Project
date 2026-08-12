@@ -4,7 +4,6 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
-import Stack from '@mui/material/Stack';
 import ViewWeekIcon from '@mui/icons-material/ViewWeek';
 import FilterAltOffIcon from '@mui/icons-material/FilterAltOff';
 
@@ -154,35 +153,57 @@ export const KanbanPage: React.FC = () => {
           flexDirection: { xs: 'column', md: 'row' },
           justifyContent: 'space-between',
           alignItems: { xs: 'flex-start', md: 'center' },
-          gap: 2,
-          mb: 3,
+          gap: 2.5,
+          mb: 3.5,
+          pt: 1,
         }}
       >
-        <Box>
+        <Box sx={{ maxWidth: 540 }}>
           <Typography
             variant="h4"
             sx={{
               fontWeight: 700,
-              fontSize: { xs: '1.5rem', sm: '1.75rem' },
+              fontSize: { xs: '1.65rem', sm: '1.875rem' },
               color: 'text.primary',
-              letterSpacing: '-0.02em',
-              mb: 0.5,
+              letterSpacing: '-0.025em',
+              mb: 0.75,
+              lineHeight: 1.2,
             }}
           >
             Kanban Board
           </Typography>
-          <Typography variant="body2" sx={{ color: 'text.secondary', fontSize: '0.875rem' }}>
+          <Typography
+            variant="body2"
+            sx={{ color: 'text.secondary', fontSize: '0.9rem', lineHeight: 1.5 }}
+          >
             Drag and drop cards across columns to update workflow status in real time.
           </Typography>
         </Box>
 
-        {/* Breakdown Metric Chips */}
-        <Stack direction="row" spacing={1} sx={{ flexWrap: 'wrap', gap: 1 }}>
+        {/* Breakdown Metric Chips Container */}
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 1,
+            flexWrap: 'wrap',
+            p: 1.25,
+            backgroundColor: '#ffffff',
+            borderRadius: 3,
+            border: '1px solid var(--color-hairline, #e2e8f0)',
+            boxShadow: '0 1px 3px rgba(0, 0, 0, 0.03)',
+          }}
+        >
           <Chip
             label={`Total: ${stories.length}`}
             variant="outlined"
             size="small"
-            sx={{ fontWeight: 600, fontFamily: 'var(--font-mono)' }}
+            sx={{
+              fontWeight: 700,
+              fontSize: 11,
+              fontFamily: 'var(--font-mono)',
+              borderColor: 'var(--color-hairline, #cbd5e1)',
+            }}
           />
           {WORKFLOW_STATUSES.map((st) => {
             const count = stories.filter((s) => s.status === st).length;
@@ -203,7 +224,7 @@ export const KanbanPage: React.FC = () => {
               />
             );
           })}
-        </Stack>
+        </Box>
       </Box>
 
       {/* ── Kanban Filters Component ── */}
@@ -231,14 +252,16 @@ export const KanbanPage: React.FC = () => {
           onAction={clearFilters}
         />
       ) : (
-        /* ── 4 Columns Grid (horizontally scrollable on small screens) ── */
+        /* ── 4 Columns Grid (fitted on desktop screens, scrollable on small screens) ── */
         <Box
           className="kanban-board-grid"
           sx={{
             display: 'flex',
-            gap: 2.5,
-            overflowX: 'auto',
-            pb: 2,
+            gap: { xs: 1.5, sm: 2 },
+            width: '100%',
+            overflowX: { xs: 'auto', md: 'visible' },
+            pb: 2.5,
+            pt: 0.5,
             alignItems: 'stretch',
           }}
         >

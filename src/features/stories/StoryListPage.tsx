@@ -124,7 +124,7 @@ const StoryListPage: React.FC = () => {
           color="primary"
           startIcon={<AddRoundedIcon />}
           onClick={() => setModalOpen(true)}
-          sx={{ borderRadius: 'var(--radius-full)', px: 3 }}
+          sx={{ px: 3 }}
         >
           Create Story
         </Button>

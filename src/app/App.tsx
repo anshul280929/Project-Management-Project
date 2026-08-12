@@ -3,7 +3,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import theme from '../theme';
 import { AppProvider } from '../context/AppContext';
-import ProjectListPage from '../features/projects/ProjectListPage';
+import LandingPage from '../features/projects/LandingPage';
 import AppShell from '../components/layout/AppShell';
 import UserListPage from '../features/users/UserListPage';
 import UserDetailPage from '../features/users/UserDetailPage';
@@ -20,8 +20,8 @@ function App() {
       <AppProvider>
         <BrowserRouter>
           <Routes>
-            {/* ── Landing: Project List ── */}
-            <Route path="/" element={<ProjectListPage />} />
+            {/* ── Landing Page ── */}
+            <Route path="/" element={<LandingPage />} />
 
             {/* ── Project sub-routes (wrapped in AppShell) ── */}
             <Route path="/project/:projectId" element={<AppShell />}>

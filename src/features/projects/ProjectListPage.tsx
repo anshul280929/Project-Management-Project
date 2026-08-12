@@ -107,7 +107,6 @@ const ProjectListPage: React.FC = () => {
             startIcon={<AddRoundedIcon />}
             onClick={handleOpenCreate}
             sx={{
-              borderRadius: 'var(--radius-full)',
               px: 3,
               py: 1,
             }}

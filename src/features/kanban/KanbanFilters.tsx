@@ -43,13 +43,13 @@ export const KanbanFilters: React.FC<KanbanFiltersProps> = ({
         flexWrap: 'wrap',
         alignItems: 'center',
         justifyContent: 'space-between',
-        gap: 1.5,
-        mb: 3,
-        p: 2,
+        gap: 2,
+        mb: 3.5,
+        p: 2.25,
         backgroundColor: '#ffffff',
         borderRadius: 3,
         border: '1px solid var(--color-hairline, #e2e8f0)',
-        boxShadow: '0 1px 3px rgba(0, 0, 0, 0.04)',
+        boxShadow: '0 1px 3px rgba(0, 0, 0, 0.03)',
       }}
     >
       {/* ── Left Side: Filter inputs ── */}
@@ -168,7 +168,6 @@ export const KanbanFilters: React.FC<KanbanFiltersProps> = ({
         onClick={onCreateStory}
         sx={{
           fontWeight: 600,
-          borderRadius: 2,
           textTransform: 'none',
           px: 2.5,
           backgroundColor: '#000000',

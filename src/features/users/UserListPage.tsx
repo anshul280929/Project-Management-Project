@@ -96,7 +96,7 @@ const UserListPage: React.FC = () => {
           color="primary"
           startIcon={<PersonAddRoundedIcon />}
           onClick={handleOpenCreate}
-          sx={{ borderRadius: 'var(--radius-full)', px: 3 }}
+          sx={{ px: 3 }}
         >
           Add Member
         </Button>
