@@ -76,44 +76,31 @@ const ProjectListPage: React.FC = () => {
 
   return (
     <Box className="project-list-page page-enter">
-      {/* ═══ Hero Band ═══ */}
-      <Box className="hero-band project-list-page__hero">
-        <Container maxWidth="lg" disableGutters>
-          {/* Overline */}
+      {/* ═══ Header Bar & Main Content ═══ */}
+      <Container maxWidth="lg" sx={{ py: 4 }}>
+        {/* Top Header Row */}
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            mb: 4,
+          }}
+        >
+          {/* Title - Small font size & Black colour */}
           <Typography
-            variant="overline"
-            className="project-list-page__eyebrow"
-            sx={{ color: 'var(--color-body)', mb: 1.5, display: 'block' }}
-          >
-            workspace
-          </Typography>
-
-          {/* Title */}
-          <Typography
-            variant="h1"
+            variant="h6"
             component="h1"
-            className="text-display-xxl project-list-page__title"
-            sx={{ color: 'var(--color-on-dark)', mb: 1 }}
+            sx={{
+              color: '#000000',
+              fontWeight: 700,
+              fontSize: '1.125rem',
+            }}
           >
             Agile Project Manager
           </Typography>
 
-          {/* Tagline */}
-          <Typography
-            variant="body1"
-            className="project-list-page__tagline"
-            sx={{
-              color: 'var(--color-body)',
-              maxWidth: 520,
-              mb: 4,
-              lineHeight: 1.6,
-            }}
-          >
-            Plan sprints, track stories, and ship faster — all from one
-            beautiful board.
-          </Typography>
-
-          {/* CTA */}
+          {/* Create Project Button - Top right corner */}
           <Button
             variant="contained"
             color="primary"
@@ -121,25 +108,19 @@ const ProjectListPage: React.FC = () => {
             onClick={handleOpenCreate}
             sx={{
               borderRadius: 'var(--radius-full)',
-              px: 4,
-              py: 1.25,
+              px: 3,
+              py: 1,
             }}
           >
             Create Project
           </Button>
-        </Container>
+        </Box>
 
-        {/* Gradient ribbon */}
-        <Box className="hero-band__gradient-ribbon" />
-      </Box>
-
-      {/* ═══ Project Grid / Empty State ═══ */}
-      <Container maxWidth="lg" sx={{ py: 5 }}>
+        {/* ═══ Project Grid / Empty State ═══ */}
         {projects.length === 0 ? (
           <EmptyState
             icon={FolderOffRoundedIcon}
             title="No projects yet"
-            description="Create your first project to start planning sprints, tracking stories, and collaborating with your team."
             actionLabel="Create Project"
             onAction={handleOpenCreate}
           />
