@@ -1,0 +1,95 @@
+/* ═══════════════════════════════════════════════════════════
+   UserDetailPage — Styles
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Profile hero ───────────────────────────────────────── */
+.user-detail__hero {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xl);
+  margin-bottom: var(--space-3xl);
+}
+
+.user-detail__avatar-ring {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  padding: 3px;
+  background: var(--gradient-brand);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.user-detail__info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+/* ── Stats grid ─────────────────────────────────────────── */
+.user-detail__stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+  margin-bottom: var(--space-3xl);
+}
+
+.user-detail__stat-card {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: var(--radius-md);
+  padding: var(--space-xl) var(--space-2xl);
+  text-align: center;
+  transition: all 200ms ease;
+}
+
+.user-detail__stat-card:hover {
+  border-color: rgba(0, 0, 0, 0.14);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.user-detail__stat-number {
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+  color: var(--color-ink);
+}
+
+.user-detail__stat-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.55px;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin-top: var(--space-xs);
+}
+
+/* ── Stories table section ──────────────────────────────── */
+.user-detail__section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-lg);
+}
+
+/* ─── Responsive ───────────────────────────────────────── */
+@media (max-width: 767px) {
+  .user-detail__hero {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .user-detail__stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 991px) {
+  .user-detail__stats {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

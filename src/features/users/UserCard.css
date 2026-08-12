@@ -1,0 +1,55 @@
+/* ═══════════════════════════════════════════════════════════
+   UserCard — Styles
+   ═══════════════════════════════════════════════════════════ */
+
+.user-card {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: var(--radius-md) !important;
+  transition: all 250ms ease;
+  background: var(--color-canvas);
+  height: 100%;
+  position: relative;
+}
+
+.user-card:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.08),
+    0 2px 8px rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.14);
+}
+
+/* Action buttons — visible on hover */
+.user-card__actions {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  gap: 4px;
+  opacity: 0;
+  transition: opacity 200ms ease;
+  z-index: 2;
+}
+
+.user-card:hover .user-card__actions {
+  opacity: 1;
+}
+
+/* Avatar ring with gradient border */
+.user-card__avatar-ring {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  padding: 3px;
+  background: var(--gradient-brand);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Meta stats row */
+.user-card__meta {
+  padding-top: var(--space-md);
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
