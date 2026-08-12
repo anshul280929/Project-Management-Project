@@ -1,0 +1,54 @@
+/* ═══════════════════════════════════════════════════════════
+   StoryDetailPage — Styles
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Header ────────────────────────────────────────────── */
+.story-detail__header {
+  margin-bottom: var(--space-3xl);
+}
+
+.story-detail__title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-xl);
+}
+
+/* ── Detail card ───────────────────────────────────────── */
+.story-detail__card {
+  margin-bottom: var(--space-3xl);
+}
+
+/* Metadata grid — 2-column on desktop, 1-column on mobile */
+.story-detail__meta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2xl) var(--space-3xl);
+}
+
+.story-detail__meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.story-detail__meta-label {
+  font-family: var(--font-mono) !important;
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.55px !important;
+  text-transform: uppercase !important;
+  color: var(--color-muted) !important;
+}
+
+/* ─── Responsive ───────────────────────────────────────── */
+@media (max-width: 767px) {
+  .story-detail__title-row {
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+
+  .story-detail__meta-grid {
+    grid-template-columns: 1fr;
+  }
+}

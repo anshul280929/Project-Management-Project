@@ -1,0 +1,59 @@
+/* ─── DashboardPage.css ───────────────────────────────────── */
+
+.dashboard-container {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #fafbfc;
+}
+
+/* ── Hero Band ── */
+.dashboard-hero-band {
+  background: var(--color-canvas-dark, #010120);
+  color: #ffffff;
+  padding: var(--space-4xl) var(--space-3xl);
+  margin-bottom: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.dashboard-hero-band::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--gradient-brand, linear-gradient(135deg, #fc4c02, #ef2cc1, #bdbbff));
+}
+
+/* ── Main Content ── */
+.dashboard-content-area {
+  padding: var(--space-3xl) var(--space-3xl) var(--space-5xl);
+  flex: 1;
+}
+
+/* ── Section Titles ── */
+.dashboard-section-title {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #64748b;
+  margin-bottom: var(--space-lg);
+}
+
+/* ── Two-Column Grid (Activity + Team) ── */
+.dashboard-grid-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-2xl);
+}
+
+@media (min-width: 992px) {
+  .dashboard-grid-layout {
+    grid-template-columns: 1.4fr 1fr;
+  }
+}

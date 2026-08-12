@@ -1,0 +1,27 @@
+.kanban-column.drag-over {
+  border-color: var(--color-primary-periwinkle, #6366f1) !important;
+  background-color: rgba(99, 102, 241, 0.04) !important;
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.25) !important;
+}
+
+.kanban-column.drag-over .kanban-empty-dropzone {
+  border-color: var(--color-primary-periwinkle, #6366f1) !important;
+  background-color: rgba(99, 102, 241, 0.08) !important;
+}
+
+.kanban-column-cards::-webkit-scrollbar {
+  width: 6px;
+}
+
+.kanban-column-cards::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.kanban-column-cards::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+}
+
+.kanban-column-cards::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.2);
+}

@@ -15,11 +15,11 @@ export const PRIORITIES: Priority[] = [
 
 export const USER_ROLES: UserRole[] = [
   UserRole.DEVELOPER,
-  UserRole.TESTER,  
+  UserRole.TESTER,
   UserRole.MANAGER,
 ];
 
-export const STORY_POINTS: number[] = [1, 2, 3, 5, 8, 13, 21];
+export const STORY_POINTS: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 // Color maps for priority badges (text, background, and border hexes)
 // Low -> periwinkle (#bdbbff), Medium -> orange (#fc4c02), High -> magenta (#ef2cc1)

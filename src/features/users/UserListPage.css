@@ -1,0 +1,28 @@
+/* ═══════════════════════════════════════════════════════════
+   UserListPage — Styles
+   ═══════════════════════════════════════════════════════════ */
+
+/* Page header area */
+.user-list-page__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-3xl);
+}
+
+.user-list-page__header-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+/* ─── Responsive ───────────────────────────────────────── */
+
+/* Mobile */
+@media (max-width: 767px) {
+  .user-list-page__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-lg);
+  }
+}

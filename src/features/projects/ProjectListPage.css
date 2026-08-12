@@ -1,0 +1,65 @@
+/* ═══════════════════════════════════════════════════════════
+   ProjectListPage — Styles
+   ═══════════════════════════════════════════════════════════ */
+
+/* ─── Hero Band ────────────────────────────────────────── */
+.project-list-page__hero {
+  padding: var(--space-section) var(--space-3xl) var(--space-5xl);
+}
+
+.project-list-page__eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.55px;
+  text-transform: uppercase;
+}
+
+.project-list-page__title {
+  /* Brand gradient overlay on title for a premium feel */
+  background: linear-gradient(
+    135deg,
+    var(--color-on-dark) 0%,
+    var(--color-accent-periwinkle) 60%,
+    var(--color-accent-mint) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.project-list-page__tagline {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* ─── Responsive ───────────────────────────────────────── */
+
+/* Tablet */
+@media (max-width: 991px) {
+  .project-list-page__hero {
+    padding: var(--space-5xl) var(--space-2xl) var(--space-3xl);
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .project-list-page__hero {
+    padding: var(--space-3xl) var(--space-lg) var(--space-2xl);
+  }
+
+  .project-list-page__title {
+    font-size: 36px;
+    line-height: 40px;
+    letter-spacing: -1px;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 479px) {
+  .project-list-page__title {
+    font-size: 28px;
+    line-height: 32px;
+    letter-spacing: -0.6px;
+  }
+}

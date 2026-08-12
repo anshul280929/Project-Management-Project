@@ -1,0 +1,11 @@
+.kanban-card.dragging {
+  opacity: 0.45;
+  transform: scale(0.98);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15) !important;
+  border-style: dashed !important;
+  border-color: var(--color-primary-periwinkle, #6366f1) !important;
+}
+
+.kanban-card:hover .drag-handle {
+  opacity: 0.8 !important;
+}
