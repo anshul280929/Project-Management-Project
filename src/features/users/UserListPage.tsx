@@ -9,7 +9,6 @@ import GroupRemoveRoundedIcon from '@mui/icons-material/GroupRemoveRounded';
 
 import { useUsers } from '../../hooks/useUsers';
 import { useStories } from '../../hooks/useStories';
-import { useActiveProject } from '../../hooks/useActiveProject';
 import UserCard from './UserCard';
 import UserFormModal from './UserFormModal';
 import EmptyState from '../../components/ui/EmptyState';
@@ -24,12 +23,10 @@ import './UserListPage.css';
 
 const UserListPage: React.FC = () => {
   const { projectId } = useParams<{ projectId: string }>();
-  const project = useActiveProject();
   const {
     projectMembers,
     addUser,
     updateUser,
-    deleteUser,
     addMemberToProject,
     removeMemberFromProject,
   } = useUsers();

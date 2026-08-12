@@ -1,0 +1,17 @@
+.kanban-board-grid::-webkit-scrollbar {
+  height: 8px;
+}
+
+.kanban-board-grid::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.02);
+  border-radius: 4px;
+}
+
+.kanban-board-grid::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+}
+
+.kanban-board-grid::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.25);
+}
