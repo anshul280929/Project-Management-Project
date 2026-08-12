@@ -16,9 +16,14 @@ export default function AppShell() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md')); // < 900px
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [desktopOpen, setDesktopOpen] = useState(true);
 
   function handleDrawerToggle() {
-    setMobileOpen((prev) => !prev);
+    if (isMobile) {
+      setMobileOpen((prev) => !prev);
+    } else {
+      setDesktopOpen((prev) => !prev);
+    }
   }
 
   const drawerContent = <Sidebar />;
@@ -44,13 +49,17 @@ export default function AppShell() {
           {drawerContent}
         </Drawer>
       ) : (
-        /* Desktop: permanent fixed drawer */
+        /* Desktop: persistent drawer */
         <Drawer
-          variant="permanent"
-          open
+          variant="persistent"
+          open={desktopOpen}
           sx={{
-            width: SIDEBAR_WIDTH,
+            width: desktopOpen ? SIDEBAR_WIDTH : 0,
             flexShrink: 0,
+            transition: theme.transitions.create('width', {
+              easing: theme.transitions.easing.sharp,
+              duration: theme.transitions.duration.enteringScreen,
+            }),
             '& .MuiDrawer-paper': {
               width: SIDEBAR_WIDTH,
               boxSizing: 'border-box',
@@ -69,28 +78,32 @@ export default function AppShell() {
           display: 'flex',
           flexDirection: 'column',
           minHeight: '100vh',
-          width: { md: `calc(100% - ${SIDEBAR_WIDTH}px)` },
-          transition: 'margin-left 225ms cubic-bezier(0.4, 0, 0.2, 1)',
+          width: { 
+            xs: '100%', 
+            md: desktopOpen ? `calc(100% - ${SIDEBAR_WIDTH}px)` : '100%' 
+          },
+          transition: theme.transitions.create(['margin', 'width'], {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.enteringScreen,
+          }),
         }}
       >
-        {/* Header with optional mobile hamburger */}
+        {/* Header with hamburger menu */}
         <Box sx={{ position: 'relative' }}>
-          {isMobile && (
-            <IconButton
-              aria-label="open navigation"
-              onClick={handleDrawerToggle}
-              sx={{
-                position: 'absolute',
-                left: 8,
-                top: '50%',
-                transform: 'translateY(-50%)',
-                zIndex: 1200,
-                color: 'text.primary',
-              }}
-            >
-              <MenuRoundedIcon />
-            </IconButton>
-          )}
+          <IconButton
+            aria-label="open navigation"
+            onClick={handleDrawerToggle}
+            sx={{
+              position: 'absolute',
+              left: 12,
+              top: '50%',
+              transform: 'translateY(-50%)',
+              zIndex: 1200,
+              color: 'text.primary',
+            }}
+          >
+            <MenuRoundedIcon />
+          </IconButton>
           <Header />
         </Box>
 
