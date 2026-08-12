@@ -1,0 +1,12 @@
+/* ═══════════════════════════════════════════════════════════
+   StoryStatusSelect — Styles
+   ═══════════════════════════════════════════════════════════ */
+
+.story-status-select {
+  display: inline-flex;
+}
+
+.story-status-select .MuiSelect-select {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
