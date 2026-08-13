@@ -201,7 +201,15 @@ const LandingPage: React.FC = () => {
 
   // Total stats
   const totalStories = allStories.length;
-  const totalMembers = users.length;
+  const totalMembers = useMemo(() => {
+    const uniqueIds = new Set<string>();
+    for (const p of projects) {
+      for (const id of p.members) {
+        uniqueIds.add(id);
+      }
+    }
+    return uniqueIds.size;
+  }, [projects]);
 
   return (
     <Box className="landing-page page-enter">
