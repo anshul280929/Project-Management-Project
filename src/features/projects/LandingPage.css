@@ -663,19 +663,19 @@
 }
 
 .landing-how__step-number--1 {
-  background: rgba(252, 76, 2, 0.15);
+  background: #26091a;
   color: var(--color-accent-orange);
   border: 1px solid rgba(252, 76, 2, 0.2);
 }
 
 .landing-how__step-number--2 {
-  background: rgba(239, 44, 193, 0.15);
+  background: #250828;
   color: var(--color-accent-magenta);
   border: 1px solid rgba(239, 44, 193, 0.2);
 }
 
 .landing-how__step-number--3 {
-  background: rgba(189, 187, 255, 0.15);
+  background: #1a193e;
   color: var(--color-accent-periwinkle);
   border: 1px solid rgba(189, 187, 255, 0.2);
 }
