@@ -8,11 +8,8 @@ import Stack from '@mui/material/Stack';
 import LinearProgress from '@mui/material/LinearProgress';
 import Tooltip from '@mui/material/Tooltip';
 import AssignmentRoundedIcon from '@mui/icons-material/AssignmentRounded';
-import HourglassEmptyRoundedIcon from '@mui/icons-material/HourglassEmptyRounded';
-import AutorenewRoundedIcon from '@mui/icons-material/AutorenewRounded';
-import FactCheckRoundedIcon from '@mui/icons-material/FactCheckRounded';
-import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
 import { WorkflowStatus, type Story } from '../../types';
+import StatusChart from './StatusChart';
 import './StatsGrid.css';
 
 interface StatsGridProps {
@@ -25,102 +22,43 @@ export const StatsGrid: React.FC<StatsGridProps> = ({ stories }) => {
 
   // Metrics calculations
   const totalStories = stories.length;
-  const backlogStories = stories.filter((s) => s.status === WorkflowStatus.BACKLOG);
-  const inProgressStories = stories.filter((s) => s.status === WorkflowStatus.IN_PROGRESS);
-  const testingStories = stories.filter((s) => s.status === WorkflowStatus.TESTING);
-  const doneStories = stories.filter((s) => s.status === WorkflowStatus.DONE);
-
   const totalPoints = stories.reduce((acc, s) => acc + s.storyPoints, 0);
+  const doneStories = stories.filter((s) => s.status === WorkflowStatus.DONE);
   const completedPoints = doneStories.reduce((acc, s) => acc + s.storyPoints, 0);
   const completionPercentage = totalPoints > 0 ? Math.round((completedPoints / totalPoints) * 100) : 0;
 
-  const handleTileClick = (status?: WorkflowStatus) => {
+  const handleTotalClick = () => {
     if (!projectId) return;
-    if (status) {
-      navigate(`/project/${projectId}/board?status=${encodeURIComponent(status)}`);
-    } else {
-      navigate(`/project/${projectId}/board`);
-    }
+    navigate(`/project/${projectId}/board`);
   };
-
-  const statItems = [
-    {
-      title: 'Total Stories',
-      count: totalStories,
-      subtext: `${totalPoints} Story Points`,
-      icon: <AssignmentRoundedIcon sx={{ color: 'primary.main', fontSize: 24 }} />,
-      accentColor: 'var(--color-brand)',
-      onClick: () => handleTileClick(),
-    },
-    {
-      title: 'Backlog',
-      count: backlogStories.length,
-      subtext: `${backlogStories.reduce((acc, s) => acc + s.storyPoints, 0)} points`,
-      icon: <HourglassEmptyRoundedIcon sx={{ color: '#64748b', fontSize: 24 }} />,
-      accentColor: '#64748b',
-      onClick: () => handleTileClick(WorkflowStatus.BACKLOG),
-    },
-    {
-      title: 'In Progress',
-      count: inProgressStories.length,
-      subtext: `${inProgressStories.reduce((acc, s) => acc + s.storyPoints, 0)} points`,
-      icon: <AutorenewRoundedIcon sx={{ color: '#0284c7', fontSize: 24 }} />,
-      accentColor: '#0284c7',
-      onClick: () => handleTileClick(WorkflowStatus.IN_PROGRESS),
-    },
-    {
-      title: 'Testing',
-      count: testingStories.length,
-      subtext: `${testingStories.reduce((acc, s) => acc + s.storyPoints, 0)} points`,
-      icon: <FactCheckRoundedIcon sx={{ color: '#d97706', fontSize: 24 }} />,
-      accentColor: '#d97706',
-      onClick: () => handleTileClick(WorkflowStatus.TESTING),
-    },
-    {
-      title: 'Done',
-      count: doneStories.length,
-      subtext: `${completedPoints} points`,
-      icon: <CheckCircleRoundedIcon sx={{ color: '#16a34a', fontSize: 24 }} />,
-      accentColor: '#16a34a',
-      onClick: () => handleTileClick(WorkflowStatus.DONE),
-    },
-  ];
 
   return (
     <Box className="stats-grid-container">
-      {/* ── Metric Cards Grid ── */}
-      <Box
-        sx={{
-          display: 'grid',
-          gridTemplateColumns: {
-            xs: 'repeat(1, 1fr)',
-            sm: 'repeat(2, 1fr)',
-            md: 'repeat(5, 1fr)',
-          },
-          gap: 2.5,
-        }}
-      >
-        {statItems.map((item) => (
-          <Tooltip key={item.title} title={`Filter Kanban board by ${item.title}`} arrow placement="top">
-            <Card className="stats-card" onClick={item.onClick}>
-              <Box className="stats-card-accent-bar" style={{ backgroundColor: item.accentColor }} />
-              <CardContent sx={{ p: 2.5, '&:last-child': { pb: 2.5 } }}>
-                <Stack direction="row" spacing={1} sx={{ justifyContent: 'space-between', alignItems: 'center', mb: 1.5 }}>
-                  <Typography variant="overline" color="text.secondary" sx={{ fontWeight: 600, letterSpacing: 0.5, fontSize: 11 }}>
-                    {item.title}
-                  </Typography>
-                  {item.icon}
-                </Stack>
-                <Typography variant="h4" sx={{ fontWeight: 700, mb: 0.75, color: 'text.primary' }}>
-                  {item.count}
+      {/* ── Metrics Row: Total Stories Card + Chart ── */}
+      <Box className="stats-metrics-row">
+        {/* Total Stories Card (unchanged) */}
+        <Tooltip title="View all stories on Kanban board" arrow placement="top">
+          <Card className="stats-card" onClick={handleTotalClick}>
+            <Box className="stats-card-accent-bar" style={{ backgroundColor: 'var(--color-brand)' }} />
+            <CardContent sx={{ p: 2.5, '&:last-child': { pb: 2.5 } }}>
+              <Stack direction="row" spacing={1} sx={{ justifyContent: 'space-between', alignItems: 'center', mb: 1.5 }}>
+                <Typography variant="overline" color="text.secondary" sx={{ fontWeight: 600, letterSpacing: 0.5, fontSize: 11 }}>
+                  Total Stories
                 </Typography>
-                <Typography variant="caption" color="text.secondary" sx={{ fontSize: 12 }}>
-                  {item.subtext}
-                </Typography>
-              </CardContent>
-            </Card>
-          </Tooltip>
-        ))}
+                <AssignmentRoundedIcon sx={{ color: 'primary.main', fontSize: 24 }} />
+              </Stack>
+              <Typography variant="h4" sx={{ fontWeight: 700, mb: 0.75, color: 'text.primary' }}>
+                {totalStories}
+              </Typography>
+              <Typography variant="caption" color="text.secondary" sx={{ fontSize: 12 }}>
+                {totalPoints} Story Points
+              </Typography>
+            </CardContent>
+          </Card>
+        </Tooltip>
+
+        {/* Status Distribution Chart */}
+        <StatusChart stories={stories} />
       </Box>
 
       {/* ── Progress Card ── */}
@@ -160,3 +98,4 @@ export const StatsGrid: React.FC<StatsGridProps> = ({ stories }) => {
 };
 
 export default StatsGrid;
+
